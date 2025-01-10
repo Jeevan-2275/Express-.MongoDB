@@ -5,8 +5,7 @@ const app = express();
 const port = 3000;
 
 // MongoDB connection details
-// const uri = "mongodb://127.0.0.1:27017"; 
-const uri = "mongodb+srv://jeevan:123@cluster0.4kpfc.mongodb.net/";
+const uri = "mongodb+srv://Jeevan:Pass@123@cluster0.4kpfc.mongodb.net/";
 const dbName = "codinggita";
 
 // Middleware
@@ -17,7 +16,7 @@ let db, students;
 // Connect to MongoDB and initialize collections
 async function initializeDatabase() {
     try {
-        const client = await MongoClient.connect(uri, { useUnifiedTopology: true });
+        const client = await MongoClient.connect(uri);
         console.log("Connected to MongoDB");
 
         db = client.db(dbName);
@@ -51,6 +50,8 @@ app.get('/students', async (req, res) => {
 // POST: Add a new student
 app.post('/students', async (req, res) => {
     try {
+        // console.log("Request object: ",req)
+        // console.log("Request body:",req.body)
         const newStudent = req.body;
         const result = await students.insertOne(newStudent);
         res.status(201).send(`Student added with ID: ${result.insertedId}`);
@@ -62,6 +63,8 @@ app.post('/students', async (req, res) => {
 // PUT: Update a student completely
 app.put('/students/:rollNumber', async (req, res) => {
     try {
+        // console.log("Request params: ",req.params)
+        // console.log("Request body:",req.body)
         const rollNumber = parseInt(req.params.rollNumber);
         const updatedStudent = req.body;
         const result = await students.replaceOne({ rollNumber }, updatedStudent);
@@ -86,10 +89,12 @@ app.patch('/students/:rollNumber', async (req, res) => {
 // DELETE: Remove a student
 app.delete('/students/del/:name', async (req, res) => {
     try {
-        const name = req.params.name; // Use name directly as it's a string
-        const result = await students.deleteOne({ name });
-        res.status(200).send(`${result.deletedCount} document(s) deleted`);
+        console.log(req.params.name);
+        const NAme = parseInt(req.params.name);
+        console.log(NAme);
+        const result = await students.deleteOne({ NAme });
+        res.status(200).send(`${result.modifiedCount} document(s) updated`);
     } catch (err) {
         res.status(500).send("Error deleting student: " + err.message);
-    }
+    }
 });
