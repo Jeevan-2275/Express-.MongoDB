@@ -5,7 +5,7 @@ const app = express();
 const port = 3000;
 
 // MongoDB connection details
-const uri = "mongodb+srv://Jeevan:Pass@123@cluster0.4kpfc.mongodb.net/";
+const uri = "mongodb+srv://jeevan:123@cluster0.4kpfc.mongodb.net/";
 const dbName = "codinggita";
 
 // Middleware
