@@ -19,7 +19,34 @@ async function initializeDatabase() {
         const client = await MongoClient.connect(uri);
         console.log("Connected to MongoDB");
 
-        db = client.db(dbName);
+        db = client.db(dbName);# Courses API
+
+        This repository contains the code for the **Courses API**, allowing you to manage courses using `courseCode` or `course_id`. It supports common operations like retrieving, adding, updating, and deleting courses.
+        
+        ---
+        
+        ## Features
+        
+        - **GET**: Retrieve all courses or specific course details using `courseCode` or `course_id`.
+        - **POST**: Add a new course.
+        - **PUT**: Update the entire course details.
+        - **PATCH**: Update specific course details.
+        - **DELETE**: Remove a course from the system.
+        
+        ---
+        
+        ## API Documentation
+        
+        For detailed API documentation and examples, click [here](https://www.postman.com/your-postman-doc-link).
+        
+        ---
+        
+        ## Installation
+        
+        1. **Clone the repository**:
+           ```bash
+           git clone https://github.com/mayur2410-tech/coursesAPI-mongoDB-express
+        
         students = db.collection("students");
 
         // Start server after successful DB connection
